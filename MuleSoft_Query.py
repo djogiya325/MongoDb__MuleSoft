@@ -1,10 +1,13 @@
 import pymongo
 
-conn = pymongo.MongoClient("mongodb://localhost:27017/")
+conn = pymongo.MongoClient("mongodb://localhost:27017/")  #Connecting with localhost
 
-mydb = conn["MuleSoft"]
+mydb = conn["MuleSoft"]  #Created a database
 
-myColl = mydb["Movies"]
+myColl = mydb["Movies"]  #created a collection
+
+
+#Inserting data in Collection
 
 mydict = [ 
     {"name": "Veer", "actor": "Salman Khan",    "actress": "Zareen Khan",   "Director": "Anil Sharma",       "year_of_release": 2010},
@@ -14,9 +17,13 @@ mydict = [
 ]
 datas = myColl.insert_many(mydict)
 
+
+#Printing data in list
 for data in myColl.find():
     print(data)
     
+    
+ # shows movies name with actor name only
 for actor in myColl.find({},{ "name": 1, "actor": 1 }):
   print(actor)
     
