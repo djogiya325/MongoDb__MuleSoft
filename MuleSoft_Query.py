@@ -7,6 +7,10 @@ mydb = conn["MuleSoft"]  #Created a database
 myColl = mydb["Movies"]  #created a collection
 
 
+# Insert One Record
+# rec1 = myColl.insert_one("name":"Pushpa","actor":"Allu Arjun","actress":"Mandanna","Director":"Rajkumar","year_of_release": 2021)
+
+
 #Inserting data in Collection
 
 mydict = [ 
@@ -17,7 +21,10 @@ mydict = [
 ]
 datas = myColl.insert_many(mydict)
 
+#To print first record
+#x = mycol.find_one()
 
+#print(x)
 #Printing data in list
 for data in myColl.find():
     print(data)
@@ -27,6 +34,16 @@ for data in myColl.find():
 for actor in myColl.find({},{ "name": 1, "actor": 1 }):
   print(actor)
     
+#to sort data     
+#mydoc = myColl.find().sort("name", -1)
 
+#To delete collection
+#myColl.drop()
+
+#Update given record
+#prevRec = {"actor":"Aamir Khan"} 
+#recUpdate ={"$set":  {"acotor":"Sushant Singh Rajput"} }
+      
+myColl.update_one(prevRec,recUpdate)
 # print(datas.inserted_ids)
 # print(conn.list_database_names())
